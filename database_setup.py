@@ -12,8 +12,8 @@ class Restaurant(Base):
 	__tablename__ = 'restaurant'
 
 	# Mappers
-	r_name = Column(String(80), nullable = False)
-	r_id = Column(Integer, primary_key = True) 
+	name = Column(String(80), nullable = False)
+	id = Column(Integer, primary_key = True) 
 
 
 class MenuItem(Base):
@@ -22,12 +22,12 @@ class MenuItem(Base):
 	__tablename__ = 'menu_item'
 
 	# Mappers
-	m_name = Column(String(80), nullable = False)
-	m_id = Column(Integer, primary_key = True)
-	m_course = Column(String(250))
-	m_description = Column(String(250))
-	m_price = Column(String(8))
-	r_id = Column(Integer, ForeignKey('restaurant.r_id'))
+	name = Column(String(80), nullable = False)
+	id = Column(Integer, primary_key = True)
+	course = Column(String(250))
+	description = Column(String(250))
+	price = Column(String(8))
+	restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
 	restaurant = relationship(Restaurant)
 
 engine = create_engine(
