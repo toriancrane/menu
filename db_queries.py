@@ -20,7 +20,6 @@ session = DBSession()
 def getAllRestaurants():    
     """ Query all of the restaurants and return the results in ascending alphabetical order """
     restaurants = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    for r in restaurants:
-        return r
+    return restaurants
 
 # getAll()
