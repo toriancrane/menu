@@ -19,10 +19,21 @@ session = DBSession()
 
 def getAllRestaurants():    
     """ Query all of the restaurants and return the results in ascending alphabetical order """
-    temp = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    restaurants = [t[0] for t in temp]
+    restaurants = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
+    # temp = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
+    # restaurants = [t[0] for t in temp]
     # for r in restaurants:
     # 	print r
     return restaurants
 
+def addNewRestaurant(val):
+	session.add(val)
+	session.commit()
+
+def validateRestaurant(val):
+	res = session.query(Restaurant).filter_by(name = val).one()
+	if res.name:
+		return True
+	else:
+		return False 
 #getAllRestaurants()

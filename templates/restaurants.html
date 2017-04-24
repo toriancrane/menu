@@ -116,30 +116,16 @@ h4 {
     color: rgba(0, 0, 0, .87);
 }
 </style>
-    <!-- Second navbar for categories -->
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Restaurant Menus</a>
-        </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><a href="/restaurants">Restaurants</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav><!-- /.navbar -->
 <div class="container">
+	<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 	<div class="row">
 		<div style="padding-top:25px;"> </div>
         <div class="col-md-1"></div>
@@ -169,7 +155,7 @@ h4 {
 	        <div class="card">
 	            <img class="card-img-top" src="https://image.flaticon.com/icons/svg/383/383660.svg">
 	            <div class="card-block">
-	                <h4 class="card-title mt-3">{{r}}</h4>
+	                <h4 class="card-title mt-3">{{r.name}}</h4>
 	            </div>
 	            <div class="card-footer row center-block">
 	            	<div class="col-xs-6 text-left">

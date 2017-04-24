@@ -1,33 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-
-</style>
-<!-- Second navbar for categories -->
-<nav class="navbar navbar-default">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Restaurant Menus</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">Home</a></li>
-        <li><a href="/restaurants">Restaurants</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
-</nav><!-- /.navbar -->
 <div class="container">
-
+    <div class="row">
+        <label><h4>Enter the name of the restaurant that you want to add:</h4></label>
+        <form method="POST" action="/restaurants/new">
+            <div class="input-group">
+                <div class="form-group">
+                    <input type="text" name="res_name" class="form-control">
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-success btn-add" type="button">
+                        <span class="glyphicon glyphicon-plus"> Add</span>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

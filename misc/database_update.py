@@ -19,16 +19,16 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# #Only query the correct restaurant by id
-# UrbanVeggieBurger = session.query(MenuItem).filter_by(id = 8).one()
-# print "Urban Veggie Burger Price: " + UrbanVeggieBurger.price
+#Only query the correct restaurant by id
+UrbanVeggieBurger = session.query(MenuItem).filter_by(id = 8).one()
+print "Urban Veggie Burger Price: " + UrbanVeggieBurger.price
 
-# #Reset price
-# UrbanVeggieBurger.price = '$2.99'
-# #Add updated price to session
-# session.add(UrbanVeggieBurger)
-# #Commit to database
-# session.commit()
+#Reset price
+UrbanVeggieBurger.price = '$2.99'
+#Add updated price to session
+session.add(UrbanVeggieBurger)
+#Commit to database
+session.commit()
 
 # #Only query the correct restaurant by id
 # print "Urban Veggie Burger Price: " + UrbanVeggieBurger.price

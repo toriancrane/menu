@@ -7,7 +7,7 @@ import hmac
 import string
 import random
 import time
-import db_queries
+import db_methods
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -44,7 +44,7 @@ class FrontPage(MasterHandler):
 class RestaurantsPage(MasterHandler):
     """ Front Page Handler """
     def get(self):
-        res_list = db_queries.getAllRestaurants()
+        res_list = db_methods.getAllRestaurants()
         self.render('restaurants.html', restaurants = res_list)
 
 ##############   New Restaurant Page    #############
@@ -53,6 +53,16 @@ class NewRestaurantPage(MasterHandler):
     """ Front Page Handler """
     def get(self):
         self.render('newrestaurant.html')
+
+    def post(self):
+        res_name = self.request.get('res_name')
+        if db_methods.validateRestaurant(res_name) == True:
+            db_methods.addNewRestaurant(res_name)
+            time.sleep(0.1)
+            self.redirect("/restaurants")
+        else:
+            error = "There was an error with your submission."
+            self.render('restaurants.html', error = error)
 
 
 ##############    webapp2 Routes    #############
