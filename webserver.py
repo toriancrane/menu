@@ -44,13 +44,13 @@ class FrontPage(MasterHandler):
 class RestaurantsPage(MasterHandler):
     """ Front Page Handler """
     def get(self):
-        res_list = getAllRestaurants()
+        res_list = db_queries.getAllRestaurants()
         self.render('restaurants.html', restaurants = res_list)
 
 ##############    webapp2 Routes    #############
 
 app = webapp2.WSGIApplication([
-    ("/", FrontPage)
+    ("/", FrontPage),
     ("/restaurants", RestaurantsPage)
 ], debug=True)
 
