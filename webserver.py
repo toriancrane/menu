@@ -18,6 +18,12 @@ def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
 
+def remove_unicode(list):
+    l_temp = []
+    for l in list:
+        l_temp.append(l.encode('ascii'))
+    return l_temp
+
 class MasterHandler(webapp2.RequestHandler):
     """ MasterHandler Class """
 
@@ -45,7 +51,9 @@ class RestaurantsPage(MasterHandler):
     """ Front Page Handler """
     def get(self):
         res_list = db_queries.getAllRestaurants()
+        res_list = remove_unicode(res_list)
         self.render('restaurants.html', restaurants = res_list)
+
 
 ##############    webapp2 Routes    #############
 
