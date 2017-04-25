@@ -56,7 +56,7 @@ class NewRestaurantPage(MasterHandler):
 
     def post(self):
         res_name = self.request.get('res_name')
-        if db_methods.validateRestaurant(res_name) == True:
+        if res_name:
             db_methods.addNewRestaurant(res_name)
             time.sleep(0.1)
             self.redirect("/restaurants")

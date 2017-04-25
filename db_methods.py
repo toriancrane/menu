@@ -27,7 +27,8 @@ def getAllRestaurants():
     return restaurants
 
 def addNewRestaurant(val):
-	session.add(val)
+	new_res = Restaurant(name = val)
+	session.add(new_res)
 	session.commit()
 
 def validateRestaurant(val):
