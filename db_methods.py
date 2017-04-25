@@ -31,10 +31,13 @@ def addNewRestaurant(val):
 	session.add(new_res)
 	session.commit()
 
-def validateRestaurant(val):
-	res = session.query(Restaurant).filter_by(name = val).one()
-	if res.name:
-		return True
-	else:
-		return False 
-#getAllRestaurants()
+def searchRestauarant(val):
+	restaurant = session.query(Restaurant).filter_by(name = val).one()
+	return restaurant
+
+def editRestaurant(val):
+	restaurant.name = val
+	session.add(restaurant)
+	session.commit()
+
+#searchRestauarant("Thai Rama")

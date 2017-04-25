@@ -62,7 +62,33 @@ class NewRestaurantPage(MasterHandler):
             self.redirect("/restaurants")
         else:
             error = "You need to enter the name of the restaurant you want to add."
-            self.render('newrestaurant.html', error = error)       
+            self.render('newrestaurant.html', error = error)
+
+##############   New Restaurant Page    #############
+
+class EditRestaurantPage(MasterHandler):
+    """ Front Page Handler """
+    def get(self):
+        # Obtain specific restaurant id
+
+        # Obtain text for name of restaurant
+        #res_name = 
+
+        # Render edit page with current restaurant name
+        self.render('editrestaurant.html', res_name = res_name)
+
+    def post(self):
+        res_name = self.request.get('res_name')
+        if res_name:
+            # Obtain specific restaurant id
+
+            # Modify the name of the restaurant
+            db_methods.editRestaurant(res_name)
+            time.sleep(0.1)
+            self.redirect("/restaurants")
+        else:
+            error = "You need to enter the updated name of the restaurant."
+            self.render('newrestaurant.html', error = error)     
 
 
 ##############    webapp2 Routes    #############
@@ -70,7 +96,8 @@ class NewRestaurantPage(MasterHandler):
 app = webapp2.WSGIApplication([
     ("/", FrontPage),
     ("/restaurants", RestaurantsPage),
-    ("/restaurants/new", NewRestaurantPage)
+    ("/restaurants/new", NewRestaurantPage),
+    ("/restaurants/([0-9]+)/edit", EditRestaurantPage)
 ], debug=True)
 
 def main():
