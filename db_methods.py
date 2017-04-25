@@ -6,7 +6,7 @@ engine = create_engine('sqlite:///restaurantmenu.db?check_same_thread=False')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
- 
+
 DBSession = sessionmaker(bind=engine)
 # A DBSession() instance establishes all conversations with the database
 # and represents a "staging zone" for all the objects loaded into the
@@ -17,13 +17,9 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-def getAllRestaurants():    
+def getAllRestaurants():
     """ Query all of the restaurants and return the results in ascending alphabetical order """
-    restaurants = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    # temp = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    # restaurants = [t[0] for t in temp]
-    # for r in restaurants:
-    # 	print r
+    restaurants = session.query(Restaurant).order_by(Restaurant.name.asc()).all()
     return restaurants
 
 def addNewRestaurant(val):
