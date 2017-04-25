@@ -61,8 +61,8 @@ class NewRestaurantPage(MasterHandler):
             time.sleep(0.1)
             self.redirect("/restaurants")
         else:
-            error = "There was an error with your submission."
-            self.render('restaurants.html', error = error)
+            error = "You need to enter the name of the restaurant you want to add."
+            self.render('newrestaurant.html', error = error)       
 
 
 ##############    webapp2 Routes    #############
