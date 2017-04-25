@@ -64,7 +64,7 @@ class NewRestaurantPage(MasterHandler):
             error = "You need to enter the name of the restaurant you want to add."
             self.render('newrestaurant.html', error = error)
 
-##############   New Restaurant Page    #############
+##############   Edit Restaurant Page    #############
 
 class EditRestaurantPage(MasterHandler):
     """ Front Page Handler """
@@ -86,6 +86,16 @@ class EditRestaurantPage(MasterHandler):
             error = "You need to enter the updated name of the restaurant."
             self.render('newrestaurant.html', error = error)     
 
+##############   Delete Restaurant Page    #############
+
+class DeleteRestaurantPage(MasterHandler):
+    """ Front Page Handler """
+    def get(self, r_id):
+        # Obtain text for name of restaurant
+        res_name = db_methods.searchResNameByID(r_id)
+        error = res_name + " has been deleted from the restaurant database."
+        db_methods.deleteRestaurant(r_id)        
+        self.render('deleterestaurant.html', error = error)
 
 ##############    webapp2 Routes    #############
 
@@ -93,7 +103,8 @@ app = webapp2.WSGIApplication([
     ("/", FrontPage),
     ("/restaurants", RestaurantsPage),
     ("/restaurants/new", NewRestaurantPage),
-    ("/restaurants/([0-9]+)/edit", EditRestaurantPage)
+    ("/restaurants/([0-9]+)/edit", EditRestaurantPage),
+    ("/restaurants/([0-9]+)/delete", DeleteRestaurantPage)
 ], debug=True)
 
 def main():

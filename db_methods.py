@@ -37,5 +37,10 @@ def editRestaurantName(val1, val2):
 	session.add(restaurant)
 	session.commit()
 
+def deleteRestaurant(val):
+	restaurant = session.query(Restaurant).filter_by(id = val).one()
+	session.delete(restaurant)
+	session.commit()
+
 
 #searchRestauarant("Thai Rama")
