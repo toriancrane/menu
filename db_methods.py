@@ -19,11 +19,7 @@ session = DBSession()
 
 def getAllRestaurants():    
     """ Query all of the restaurants and return the results in ascending alphabetical order """
-    restaurants = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    # temp = session.query(Restaurant.name).order_by(Restaurant.name.asc()).all()
-    # restaurants = [t[0] for t in temp]
-    # for r in restaurants:
-    # 	print r
+    restaurants = session.query(Restaurant).order_by(Restaurant.name.asc()).all()
     return restaurants
 
 def addNewRestaurant(val):
@@ -31,13 +27,15 @@ def addNewRestaurant(val):
 	session.add(new_res)
 	session.commit()
 
-def searchRestauarant(val):
-	restaurant = session.query(Restaurant).filter_by(name = val).one()
-	return restaurant
+def searchResNameByID(val):
+	restaurant = session.query(Restaurant).filter_by(id = val).one()
+	return restaurant.name
 
-def editRestaurant(val):
-	restaurant.name = val
+def editRestaurantName(val1, val2):
+	restaurant = session.query(Restaurant).filter_by(id = val1).one()
+	restaurant.name = val2
 	session.add(restaurant)
 	session.commit()
+
 
 #searchRestauarant("Thai Rama")

@@ -68,22 +68,18 @@ class NewRestaurantPage(MasterHandler):
 
 class EditRestaurantPage(MasterHandler):
     """ Front Page Handler """
-    def get(self):
-        # Obtain specific restaurant id
-
+    def get(self, r_id):
         # Obtain text for name of restaurant
-        #res_name = 
+        res_name = db_methods.searchResNameByID(r_id)
 
         # Render edit page with current restaurant name
         self.render('editrestaurant.html', res_name = res_name)
 
-    def post(self):
+    def post(self, r_id):
         res_name = self.request.get('res_name')
         if res_name:
-            # Obtain specific restaurant id
-
             # Modify the name of the restaurant
-            db_methods.editRestaurant(res_name)
+            db_methods.editRestaurantName(r_id, res_name)
             time.sleep(0.1)
             self.redirect("/restaurants")
         else:
